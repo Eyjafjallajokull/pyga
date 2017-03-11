@@ -51,10 +51,12 @@ clean-test: ## remove test and coverage artifacts
 test: ## run tests quickly with the default Python
 	nosetests
 
-coverage: ## check code coverage quickly with the default Python
+coverage: coverage-ci ## check code coverage quickly with the default Python
+	$(BROWSER) htmlcov/index.html
+
+coverage-ci: ## check code coverage quickly with the default Python
 	nosetests --with-coverage --cover-package=pyga --cover-erase
 	coverage html
-	$(BROWSER) htmlcov/index.html
 
 release: clean ## package and upload a release
 	python setup.py sdist upload
