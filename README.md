@@ -8,6 +8,9 @@
    |___|      |___|  |_______||__| |__|
 ```
 
+[![Build Status](https://travis-ci.org/Eyjafjallajokull/pyga.svg?branch=master)](https://travis-ci.org/Eyjafjallajokull/pyga)
+[![codecov](https://codecov.io/gh/Eyjafjallajokull/pyga/branch/master/graph/badge.svg)](https://codecov.io/gh/Eyjafjallajokull/pyga)
+
 ## Usage
 
 ```
