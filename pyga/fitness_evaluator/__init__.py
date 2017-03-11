@@ -1,0 +1,2 @@
+from .fitness_evaluator import FitnessEvaluator
+from .string_fitness_evaluator import StringFitnessEvaluator
