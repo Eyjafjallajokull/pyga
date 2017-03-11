@@ -1,6 +1,7 @@
 from unittest import TestCase
 from unittest.mock import MagicMock
 
+from pyga import Observer, Event
 from pyga.common import Random
 from pyga.evolution_engine import EvolutionEngine
 from pyga.factory import CandidateFactory
@@ -74,3 +75,15 @@ class EvolutionEngineTestCase(TestCase):
         population = self.engine.evolve(population_size, 5, termination_condition)
         self.assertEqual(len(population), population_size)
         self.assertEqual(self.engine.generation, 1)
+
+    def test_add_observer(self):
+        with self.assertRaises(TypeError) as cx:
+            self.engine.add_observer(False)
+        self.engine.add_observer(Observer())
+
+    def test_trigger_event(self):
+        observer = Observer()
+        observer.trigger = MagicMock()
+        self.engine.add_observer(observer)
+        self.engine.trigger_event(Event.EVALUATED_POPULATION, {})
+        self.assertEqual(observer.trigger.call_count, 1)

@@ -33,3 +33,6 @@ class GenerationalEvolutionEngineTestCase(TestCase):
         self.assertEqual(self.engine.selection_strategy.select.call_count, 1)
         self.assertEqual(self.engine.evolutionary_operator.apply.call_count, 1)
 
+    def test_next_evolution_step_invalid(self):
+        with self.assertRaises(RuntimeError):
+            self.engine.next_evolution_step(Population(), 1)

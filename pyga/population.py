@@ -13,6 +13,8 @@ class Population(list):
         self.sort(key=lambda x: x.fitness, reverse=not is_natural)
 
     def get_best(self, is_natural=True):
+        if not len(self):
+            return None
         best = self[0]
         for candidate in self:
             if (is_natural and candidate.fitness > best.fitness) or \

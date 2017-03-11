@@ -36,20 +36,21 @@ class EvolutionEngine:
         self.generation = 0
         population = self.candidate_factory.create_population(population_size)
         self.evaluate_population(population)
+        self.trigger_event(Event.INITIALIZE, {'population': population, 'generation': self.generation})
         should_terminate = termination_condition.should_terminate(population)
         while not should_terminate:
             self.generation += 1
             population = self.next_evolution_step(population, elite_count)
             self.evaluate_population(population)
             should_terminate = termination_condition.should_terminate(population)
-        self.trigger_event(Event(Event.TERMINATE, {'population': population, 'generation': self.generation}))
+        self.trigger_event(Event.TERMINATE, {'population': population, 'generation': self.generation})
         return population
 
     def evaluate_population(self, population):
         for candidate in population:
             candidate.fitness = self.fitness_evaluator.get_fitness(candidate, population)
         population.sort_by_fitness(is_natural=self.fitness_evaluator.is_natural)
-        self.trigger_event(Event(Event.EVALUATED_POPULATION, {'population': population, 'generation': self.generation}))
+        self.trigger_event(Event.EVALUATED_POPULATION, {'population': population, 'generation': self.generation})
 
     def next_evolution_step(self, population, elite_count):
         raise NotImplementedError()
@@ -59,6 +60,7 @@ class EvolutionEngine:
             raise TypeError('observer must be type of Observer')
         self.observers.append(observer)
 
-    def trigger_event(self, event_data):
+    def trigger_event(self, event_type, event_data):
+        event = Event(event_type, event_data)
         for observer in self.observers:
-            observer.trigger(event_data)
+            observer.trigger(event)

@@ -43,6 +43,7 @@ class Probability:
 class Event:
     EVALUATED_POPULATION = 1
     TERMINATE = 2
+    INITIALIZE = 3
 
     def __init__(self, event_type, data):
         self.type = event_type
