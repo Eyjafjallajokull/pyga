@@ -2,7 +2,7 @@ from unittest import TestCase
 from unittest.mock import MagicMock
 
 from pyga.exception import ValidationException
-from pyga.genome import Genome
+from pyga.candidate import Candidate
 from pyga.operator import EvolutionaryOperator, PipelineOperator
 from pyga.population import Population
 
@@ -14,9 +14,9 @@ class SampleOperator(EvolutionaryOperator):
 
 class PipelineOperatorTestCase(TestCase):
     def test_apply_empty(self):
-        genome = Genome()
+        candidate = Candidate()
         population = Population()
-        population.append(genome)
+        population.append(candidate)
         population.shuffle = MagicMock()
         sample_operator = SampleOperator()
         pipeline_operator = PipelineOperator()

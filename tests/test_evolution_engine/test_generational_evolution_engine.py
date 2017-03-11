@@ -5,7 +5,7 @@ from pyga import GenerationalEvolutionEngine, EvolutionEngine
 from pyga.common import Random
 from pyga.factory import CandidateFactory
 from pyga.fitness_evaluator import FitnessEvaluator
-from pyga.genome import Genome
+from pyga.candidate import Candidate
 from pyga.operator import EvolutionaryOperator
 from pyga.population import Population
 from pyga.selection_strategy import SelectionStrategy
@@ -27,7 +27,7 @@ class GenerationalEvolutionEngineTestCase(TestCase):
     def test_next_evolution_step(self):
         population = Population()
         for i in range(5):
-            population.append(Genome())
+            population.append(Candidate())
         result = self.engine.next_evolution_step(population, 3)
         self.assertEqual(len(result), len(population))
         self.assertEqual(self.engine.selection_strategy.select.call_count, 1)

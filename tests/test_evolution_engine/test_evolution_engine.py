@@ -6,7 +6,7 @@ from pyga.common import Random
 from pyga.evolution_engine import EvolutionEngine
 from pyga.factory import CandidateFactory
 from pyga.fitness_evaluator import FitnessEvaluator
-from pyga.genome import Genome
+from pyga.candidate import Candidate
 from pyga.operator import EvolutionaryOperator
 from pyga.population import Population
 from pyga.selection_strategy import SelectionStrategy
@@ -17,7 +17,7 @@ class EvolutionEngineTestCase(TestCase):
     def setUp(self):
         random = Random()
         factory = CandidateFactory(random)
-        factory.create_candidate = MagicMock(side_effect=lambda: Genome())
+        factory.create_candidate = MagicMock(side_effect=lambda: Candidate())
         operator = EvolutionaryOperator()
         fitness_evaluator = FitnessEvaluator()
         fitness_evaluator.get_fitness = MagicMock(return_value=5)
@@ -28,7 +28,7 @@ class EvolutionEngineTestCase(TestCase):
     def create_population(self, size):
         population = Population()
         for _ in range(size):
-            population.append(Genome())
+            population.append(Candidate())
         return population
 
     def test_create_invalid(self):

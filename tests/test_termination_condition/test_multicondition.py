@@ -1,7 +1,7 @@
 from unittest import TestCase
 from unittest.mock import MagicMock
 
-from pyga.genome import Genome
+from pyga.candidate import Candidate
 from pyga.population import Population
 from pyga.termination_condition import Multicondition
 from pyga.termination_condition import TerminationCondition
@@ -10,7 +10,7 @@ from pyga.termination_condition import TerminationCondition
 class MulticonditionTestCase(TestCase):
     def test_logical_and(self):
         population = Population()
-        population.append(Genome())
+        population.append(Candidate())
 
         tc1 = TerminationCondition()
         tc1.should_terminate = MagicMock(return_value=True)
@@ -26,7 +26,7 @@ class MulticonditionTestCase(TestCase):
 
     def test_logical_or(self):
         population = Population()
-        population.append(Genome())
+        population.append(Candidate())
 
         tc1 = TerminationCondition()
         tc1.should_terminate = MagicMock(return_value=True)

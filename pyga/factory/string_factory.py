@@ -1,5 +1,5 @@
 from pyga.factory import CandidateFactory
-from pyga.genome import Genome
+from pyga.candidate import Candidate
 
 
 class StringFactory(CandidateFactory):
@@ -11,6 +11,6 @@ class StringFactory(CandidateFactory):
         self.size = size
 
     def create_candidate(self):
-        genome = Genome()
-        genome.data = ''.join([self.random.choice(self.alphabet) for _ in range(self.size)])
-        return genome
+        candidate = Candidate()
+        candidate.data = ''.join([self.random.choice(self.alphabet) for _ in range(self.size)])
+        return candidate

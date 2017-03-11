@@ -5,9 +5,9 @@ class Population(list):
     def shuffle(self):
         Random.shuffle(self)
 
-    def append_list(self, genome_list):
-        for genome in genome_list:
-            self.append(genome)
+    def append_list(self, candidate_list):
+        for candidate in candidate_list:
+            self.append(candidate)
 
     def sort_by_fitness(self, is_natural=True):
         self.sort(key=lambda x: x.fitness, reverse=not is_natural)

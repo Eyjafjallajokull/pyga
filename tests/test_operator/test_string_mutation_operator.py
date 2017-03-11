@@ -2,7 +2,7 @@ from unittest import TestCase
 from unittest.mock import MagicMock, call
 
 from pyga.common import Probability, Random
-from pyga.genome import Genome
+from pyga.candidate import Candidate
 from pyga.operator.crossover_operator import CrossoverOperator
 from pyga.operator.string_crossover_operator import StringCrossoverOperator
 from pyga.operator.string_mutation_operator import StringMutationOperator
@@ -13,10 +13,10 @@ class StringMutationOperatorTestCase(TestCase):
     def test_apply_one(self):
         alphabet = 'abcd'
         inputs, outputs = ('aaaa', 'abcd')
-        genome = Genome()
-        genome.data = inputs
+        candidate = Candidate()
+        candidate.data = inputs
         population = Population()
-        population.append(genome)
+        population.append(candidate)
         probability = Probability(1)
         random = Random()
         random.choice = MagicMock(side_effect=['a', 'b', 'c', 'd'])
@@ -28,10 +28,10 @@ class StringMutationOperatorTestCase(TestCase):
     def test_apply_zero(self):
         alphabet = 'abcd'
         inputs, outputs = ('aaaa', 'aaaa')
-        genome = Genome()
-        genome.data = inputs
+        candidate = Candidate()
+        candidate.data = inputs
         population = Population()
-        population.append(genome)
+        population.append(candidate)
         probability = Probability(0)
         random = Random()
         crossover_operator = StringMutationOperator(alphabet, probability, random)

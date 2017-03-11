@@ -1,7 +1,7 @@
 import uuid
 
 
-class Genome:
+class Candidate:
     def __init__(self):
         self.data = {}
         self.fitness = None

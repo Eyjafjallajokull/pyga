@@ -1,13 +1,13 @@
 from unittest import TestCase
 
-from pyga import Event, ConsoleObserver, Population, Genome
+from pyga import Event, ConsoleObserver, Population, Candidate
 
 
 class ConsoleObserverTestCase(TestCase):
     def test_trigger(self):
-        genome = Genome()
-        genome.fitness = 1
-        population = Population([genome])
+        candidate = Candidate()
+        candidate.fitness = 1
+        population = Population([candidate])
         observer = ConsoleObserver()
         observer.trigger(Event(Event.INITIALIZE, {'population': population}))
         observer.trigger(Event(Event.EVALUATED_POPULATION, {'generation': 1, 'population': population}))

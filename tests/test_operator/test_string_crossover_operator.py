@@ -2,7 +2,7 @@ from unittest import TestCase
 from unittest.mock import MagicMock, call
 
 from pyga.common import Probability, Random
-from pyga.genome import Genome
+from pyga.candidate import Candidate
 from pyga.operator.crossover_operator import CrossoverOperator
 from pyga.operator.string_crossover_operator import StringCrossoverOperator
 from pyga.population import Population
@@ -10,13 +10,13 @@ from pyga.population import Population
 
 class StringCrossoverOperatorTestCase(TestCase):
     def _test_apply(self, strings, random, points):
-        genome1 = Genome()
-        genome1.data = strings[0][0]
-        genome2 = Genome()
-        genome2.data = strings[0][1]
+        candidate1 = Candidate()
+        candidate1.data = strings[0][0]
+        candidate2 = Candidate()
+        candidate2.data = strings[0][1]
         crossover_points = points
         crossover_operator = StringCrossoverOperator(crossover_points, Probability(1), random)
-        result = crossover_operator.mate(genome1, genome2)
+        result = crossover_operator.mate(candidate1, candidate2)
         self.assertEqual(len(result), 2)
         self.assertEqual(result[0].data, strings[1][0])
         self.assertEqual(result[1].data, strings[1][1])

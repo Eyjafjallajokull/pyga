@@ -5,6 +5,6 @@ from .operator import *
 from .selection_strategy import *
 from .termination_condition import *
 from .common import *
-from .genome import *
+from .candidate import *
 from .population import *
 from .observer import *

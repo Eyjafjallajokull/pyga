@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 from pyga import Random
 from pyga.exception import ValidationException
-from pyga.genome import Genome
+from pyga.candidate import Candidate
 from pyga.population import Population
 from pyga.selection_strategy import *
 
@@ -13,33 +13,33 @@ class RouletteWheelSelectionStrategyTestCase(TestCase):
         self.random = Random()
         self.obj = RouletteWheelSelectionStrategy(self.random)
 
-    def create_genome(self, fitness=None):
-        genome = Genome()
-        genome.fitness = fitness
-        return genome
+    def create_candidate(self, fitness=None):
+        candidate = Candidate()
+        candidate.fitness = fitness
+        return candidate
 
     def test_select_result_type(self):
         population = Population()
-        population.append(self.create_genome(fitness=1))
+        population.append(self.create_candidate(fitness=1))
         results = self.obj.select(population, True, 1)
         self.assertIsInstance(results, Population)
 
     def test_select_result_size(self):
         population = Population()
-        population.append(self.create_genome(fitness=1))
-        population.append(self.create_genome(fitness=2))
-        population.append(self.create_genome(fitness=3))
-        population.append(self.create_genome(fitness=4))
+        population.append(self.create_candidate(fitness=1))
+        population.append(self.create_candidate(fitness=2))
+        population.append(self.create_candidate(fitness=3))
+        population.append(self.create_candidate(fitness=4))
         for selection_size in range(len(population)):
             results = self.obj.select(population, True, selection_size+1)
             self.assertEqual(selection_size+1, len(results))
 
     def test_select_proper_items(self):
         population = Population()
-        population.append(self.create_genome(fitness=1))
-        population.append(self.create_genome(fitness=2))
-        population.append(self.create_genome(fitness=3))
-        population.append(self.create_genome(fitness=4))
+        population.append(self.create_candidate(fitness=1))
+        population.append(self.create_candidate(fitness=2))
+        population.append(self.create_candidate(fitness=3))
+        population.append(self.create_candidate(fitness=4))
         selection_size = 3
         self.random.float = MagicMock(return_value=0.99)
         results = self.obj.select(population, True, selection_size)
@@ -49,10 +49,10 @@ class RouletteWheelSelectionStrategyTestCase(TestCase):
 
     def test_select_proper_items_natural_false(self):
         population = Population()
-        population.append(self.create_genome(fitness=4))
-        population.append(self.create_genome(fitness=3))
-        population.append(self.create_genome(fitness=2))
-        population.append(self.create_genome(fitness=1))
+        population.append(self.create_candidate(fitness=4))
+        population.append(self.create_candidate(fitness=3))
+        population.append(self.create_candidate(fitness=2))
+        population.append(self.create_candidate(fitness=1))
         selection_size = 3
         self.random.float = MagicMock(return_value=0.99)
         results = self.obj.select(population, False, selection_size)
