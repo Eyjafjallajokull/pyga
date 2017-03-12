@@ -20,4 +20,4 @@ class StochasticUniversalSamplingSelectionStrategy(RouletteWheelSelectionStrateg
         distance = self.get_fitness_sum(population) / selection_size
         start = self.random.float() * distance
         pointers = [start + i * distance for i in range(selection_size)]
-        return self.rns(population, pointers)
+        return self.roulette(population, pointers)

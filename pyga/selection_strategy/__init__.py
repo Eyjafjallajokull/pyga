@@ -2,3 +2,4 @@ from .truncation_selection_strategy import TruncationSelectionStrategy
 from .selection_strategy import SelectionStrategy
 from .roulette_wheel_selection_strategy import RouletteWheelSelectionStrategy
 from .sus_selection_strategy import StochasticUniversalSamplingSelectionStrategy
+from .rank_selection_strategy import RankSelectionStrategy

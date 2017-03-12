@@ -24,20 +24,25 @@ class RouletteWheelSelectionStrategy(SelectionStrategy):
         self._is_natural = is_natural
         self._fitness_sum = None
 
-        selected = self.rns(population, [self.random.float()*self.get_fitness_sum(population) for _ in range(selection_size)])
+        pointers = [self.random.float() * self.get_fitness_sum(population) for _ in range(selection_size)]
+        selected = self.roulette(population, pointers)
         return selected
 
-    def rns(self, population, points):
+    def roulette(self, population, points):
         selected = Population()
-        segments = [self.get_normal_fitness(population[0])]
-        for i in range(1, len(population)):
-            segments.append(segments[i-1] + self.get_normal_fitness(population[i]))
+        segments = self.get_segments(population)
         for rand in points:
             for i in range(len(segments)):
                 if rand < segments[i]:
                     selected.append(deepcopy(population[i]))
                     break
         return selected
+
+    def get_segments(self, population):
+        segments = [self.get_normal_fitness(population[0])]
+        for i in range(1, len(population)):
+            segments.append(segments[i - 1] + self.get_normal_fitness(population[i]))
+        return segments
 
     def get_normal_fitness(self, candidate):
         if self._is_natural:
