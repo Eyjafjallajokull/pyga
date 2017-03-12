@@ -32,7 +32,7 @@ print(population.get_best())
 
 Some basic examples are available to give You an idea how PyGA works.
 
-Evolve population random strings to match "Hello World":
+Evolve population of random strings to match "Hello World":
 
 ```console
 python examples/match_string.py
