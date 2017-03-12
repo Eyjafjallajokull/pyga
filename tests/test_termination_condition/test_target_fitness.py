@@ -6,7 +6,7 @@ from pyga.termination_condition import TargetFitness
 
 
 class TargetFitnessTestCase(TestCase):
-    def test_create_population(self):
+    def test_should_terminate(self):
         candidate = Candidate()
         candidate.fitness = 50
         population = Population()
