@@ -43,22 +43,20 @@ class RouletteWheelSelectionStrategyTestCase(TestCase):
         selection_size = 3
         self.random.float = MagicMock(return_value=0.99)
         results = self.obj.select(population, True, selection_size)
-        self.assertEqual(results[0].fitness, 4)
         for candidate in results:
             self.assertEqual(candidate.fitness, 4)
 
     def test_select_proper_items_natural_false(self):
         population = Population()
-        population.append(self.create_candidate(fitness=4))
-        population.append(self.create_candidate(fitness=3))
-        population.append(self.create_candidate(fitness=2))
-        population.append(self.create_candidate(fitness=1))
+        population.append(self.create_candidate(fitness=-4))
+        population.append(self.create_candidate(fitness=-3))
+        population.append(self.create_candidate(fitness=-2))
+        population.append(self.create_candidate(fitness=-1))
         selection_size = 3
         self.random.float = MagicMock(return_value=0.99)
         results = self.obj.select(population, False, selection_size)
-        self.assertEqual(results[0].fitness, 1)
         for candidate in results:
-            self.assertEqual(candidate.fitness, 1)
+            self.assertEqual(candidate.fitness, -1)
 
     def test_validation_selection_size(self):
         with self.assertRaises(ValidationException):

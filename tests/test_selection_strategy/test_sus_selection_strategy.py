@@ -1,14 +1,17 @@
 from unittest import TestCase
+from unittest.mock import MagicMock
 
+from pyga import Random
 from pyga.exception import ValidationException
 from pyga.candidate import Candidate
 from pyga.population import Population
 from pyga.selection_strategy import *
 
 
-class RankSelectionStrategyTestCase(TestCase):
+class StochasticUniversalSamplingSelectionStrategyTestCase(TestCase):
     def setUp(self):
-        self.obj = TruncationSelectionStrategy()
+        self.random = Random()
+        self.obj = StochasticUniversalSamplingSelectionStrategy(self.random)
 
     def create_candidate(self, fitness=None):
         candidate = Candidate()
@@ -37,9 +40,12 @@ class RankSelectionStrategyTestCase(TestCase):
         population.append(self.create_candidate(fitness=2))
         population.append(self.create_candidate(fitness=3))
         population.append(self.create_candidate(fitness=4))
-        selection_size = 1
+        selection_size = 3
+        self.random.float = MagicMock(return_value=0.99)
         results = self.obj.select(population, True, selection_size)
-        self.assertEqual(results[0].fitness, 4)
+        self.assertEqual(results[0].fitness, 3)
+        self.assertEqual(results[1].fitness, 4)
+        self.assertEqual(results[2].fitness, 4)
 
     def test_select_proper_items_natural_false(self):
         population = Population()
@@ -47,9 +53,12 @@ class RankSelectionStrategyTestCase(TestCase):
         population.append(self.create_candidate(fitness=-3))
         population.append(self.create_candidate(fitness=-2))
         population.append(self.create_candidate(fitness=-1))
-        selection_size = 1
+        selection_size = 3
+        self.random.float = MagicMock(return_value=0.99)
         results = self.obj.select(population, False, selection_size)
-        self.assertEqual(results[0].fitness, -1)
+        self.assertEqual(results[0].fitness, -4)
+        self.assertEqual(results[1].fitness, -3)
+        self.assertEqual(results[2].fitness, -1)
 
     def test_validation_selection_size(self):
         with self.assertRaises(ValidationException):
