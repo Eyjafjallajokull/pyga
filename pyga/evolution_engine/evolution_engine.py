@@ -49,7 +49,7 @@ class EvolutionEngine:
     def evaluate_population(self, population):
         for candidate in population:
             candidate.fitness = self.fitness_evaluator.get_fitness(candidate, population)
-        population.sort_by_fitness(is_natural=self.fitness_evaluator.is_natural)
+        population.sort_by_fitness()
         self.trigger_event(Event.EVALUATED_POPULATION, {'population': population, 'generation': self.generation})
 
     def next_evolution_step(self, population, elite_count):

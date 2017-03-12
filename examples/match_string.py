@@ -24,7 +24,7 @@ operator.append_operator(crossover)
 operator.append_operator(mutation)
 fitness_evaluator = StringFitnessEvaluator(subject_string)
 selection_strategy = RouletteWheelSelectionStrategy(random)
-termination_condition = TargetFitness(len(subject_string), fitness_evaluator.is_natural)
+termination_condition = TargetFitness(len(subject_string))
 
 engine = GenerationalEvolutionEngine()
 engine.add_observer(observer)

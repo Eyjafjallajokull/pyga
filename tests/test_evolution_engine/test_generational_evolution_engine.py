@@ -20,7 +20,7 @@ class GenerationalEvolutionEngineTestCase(TestCase):
         fitness_evaluator = FitnessEvaluator()
         fitness_evaluator.get_fitness = MagicMock(return_value=5)
         selection_strategy = SelectionStrategy()
-        selection_strategy.select = MagicMock(side_effect=lambda p, _, s: p[0:s])
+        selection_strategy.select = MagicMock(side_effect=lambda p, s: p[0:s])
         self.engine = GenerationalEvolutionEngine()
         self.engine.create(factory, evolutionary_operator, fitness_evaluator, selection_strategy)
 

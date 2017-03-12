@@ -1,7 +1,7 @@
 from unittest import TestCase
 from unittest.mock import MagicMock
 
-from pyga import Observer, Event
+from pyga import Observer, Event, Fitness
 from pyga.common import Random
 from pyga.evolution_engine import EvolutionEngine
 from pyga.factory import CandidateFactory
@@ -20,7 +20,7 @@ class EvolutionEngineTestCase(TestCase):
         factory.create_candidate = MagicMock(side_effect=lambda: Candidate())
         operator = EvolutionaryOperator()
         fitness_evaluator = FitnessEvaluator()
-        fitness_evaluator.get_fitness = MagicMock(return_value=5)
+        fitness_evaluator.get_fitness = MagicMock(side_effect=lambda c, p: Fitness(5))
         selection_strategy = SelectionStrategy()
         self.engine = EvolutionEngine()
         self.engine.create(factory, operator, fitness_evaluator, selection_strategy)

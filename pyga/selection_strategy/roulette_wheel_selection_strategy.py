@@ -16,12 +16,12 @@ class RouletteWheelSelectionStrategy(SelectionStrategy):
         self._is_natural = None
         self._fitness_sum = None
 
-    def select(self, population, is_natural, selection_size):
+    def select(self, population, selection_size):
         if selection_size < 1:
             raise ValidationException('selection_size must not be lower then 1')
         if len(population) < selection_size:
             raise ValidationException('selection_size is greater then Population size')
-        self._is_natural = is_natural
+        self._is_natural = population[0].fitness.is_natural
         self._fitness_sum = None
 
         pointers = [self.random.float() * self.get_fitness_sum(population) for _ in range(selection_size)]
@@ -41,7 +41,7 @@ class RouletteWheelSelectionStrategy(SelectionStrategy):
     def get_segments(self, population):
         segments = [self.get_normal_fitness(population[0])]
         for i in range(1, len(population)):
-            segments.append(segments[i - 1] + self.get_normal_fitness(population[i]))
+            segments.append(segments[i - 1] + float(self.get_normal_fitness(population[i])))
         return segments
 
     def get_normal_fitness(self, candidate):
@@ -54,5 +54,5 @@ class RouletteWheelSelectionStrategy(SelectionStrategy):
         if not self._fitness_sum:
             self._fitness_sum = 0
             for candidate in population:
-                self._fitness_sum += self.get_normal_fitness(candidate)
+                self._fitness_sum += float(self.get_normal_fitness(candidate))
         return self._fitness_sum

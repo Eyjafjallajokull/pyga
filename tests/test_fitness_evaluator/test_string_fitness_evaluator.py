@@ -1,8 +1,6 @@
 from unittest import TestCase
-from unittest.mock import MagicMock
 
-from pyga.common import Random
-from pyga.factory.string_factory import StringFactory
+from pyga.common import Fitness
 from pyga.fitness_evaluator import StringFitnessEvaluator
 from pyga.candidate import Candidate
 from pyga.population import Population
@@ -16,6 +14,7 @@ class StringFitnessEvaluatorTestCase(TestCase):
         population.append(candidate)
         fitness_evaluator = StringFitnessEvaluator(target)
         result = fitness_evaluator.get_fitness(candidate, population)
+        self.assertIsInstance(result, Fitness)
         self.assertEqual(result, score)
 
     def test_get_fitness(self):

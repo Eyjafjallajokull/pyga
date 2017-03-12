@@ -8,8 +8,6 @@ class GenerationalEvolutionEngine(EvolutionEngine):
             raise RuntimeError('population size is lower then elite_count')
         elite_population = Population(population[-elite_count:])
         next_population = self.selection_strategy.select(population,
-                                                         self.fitness_evaluator.is_natural,
                                                          len(population)-elite_count)
         self.evolutionary_operator.apply(next_population)
         return Population(next_population + elite_population)
-

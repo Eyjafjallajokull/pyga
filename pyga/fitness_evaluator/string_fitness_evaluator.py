@@ -1,3 +1,4 @@
+from ..common import Fitness
 from .fitness_evaluator import FitnessEvaluator
 
 
@@ -12,4 +13,4 @@ class StringFitnessEvaluator(FitnessEvaluator):
         for i in range(len(candidate_string)):
             if candidate_string[i] == self.target_string[i]:
                 matches += 1
-        return matches
+        return Fitness(matches)

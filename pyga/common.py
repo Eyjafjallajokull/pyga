@@ -40,6 +40,47 @@ class Probability:
         return self.random.float() < self.value
 
 
+class Fitness:
+    def __init__(self, value, is_natural=True):
+        self.value = value
+        self.is_natural = is_natural
+
+    def __repr__(self):
+        return str(self.value)
+
+    def __int__(self):
+        return int(self.value)
+
+    def __float__(self):
+        return float(self.value)
+
+    def __add__(self, other):
+        return self.value + float(other)
+
+    def __sub__(self, other):
+        return self.value - float(other)
+
+    def __lt__(self, other):
+        return self.value < float(other)
+
+    def __le__(self, other):
+        return self.value <= float(other)
+
+    def __eq__(self, other):
+        return self.value == float(other)
+
+    def __ne__(self, other):
+        return self.value != float(other)
+
+    def __ge__(self, other):
+        return self.value >= float(other)
+
+    def __gt__(self, other):
+        return self.value > float(other)
+
+    def __abs__(self):
+        return abs(self.value)
+
 class Event:
     EVALUATED_POPULATION = 1
     TERMINATE = 2

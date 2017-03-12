@@ -2,6 +2,10 @@ from pyga.common import Random
 
 
 class Population(list):
+    def __add__(self, other):
+        self.append_list(other)
+        return self
+
     def shuffle(self):
         Random.shuffle(self)
 
@@ -9,13 +13,17 @@ class Population(list):
         for candidate in candidate_list:
             self.append(candidate)
 
-    def sort_by_fitness(self, is_natural=True):
+    def sort_by_fitness(self):
+        if not len(self):
+            return
+        is_natural = self[0].fitness.is_natural
         self.sort(key=lambda x: x.fitness, reverse=not is_natural)
 
-    def get_best(self, is_natural=True):
+    def get_best(self):
         if not len(self):
             return None
         best = self[0]
+        is_natural = self[0].fitness.is_natural
         for candidate in self:
             if (is_natural and candidate.fitness > best.fitness) or \
                     (not is_natural and candidate.fitness < best.fitness):
