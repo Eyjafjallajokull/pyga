@@ -1,4 +1,4 @@
-.PHONY: clean clean-test clean-pyc clean-build help
+.PHONY: clean clean-test clean-pyc clean-build help examples
 .DEFAULT_GOAL := help
 define BROWSER_PYSCRIPT
 import os, webbrowser, sys
@@ -57,6 +57,9 @@ coverage: coverage-ci ## check code coverage quickly with the default Python
 coverage-ci: ## check code coverage quickly with the default Python
 	nosetests --with-coverage --cover-package=pyga --cover-erase
 	coverage html
+
+examples:
+	find examples -type f | grep -v __ | xargs python
 
 release: clean ## package and upload a release
 	python setup.py sdist upload
