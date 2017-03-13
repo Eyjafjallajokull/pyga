@@ -5,7 +5,7 @@ from pyga.common import Random
 from pyga.factory.string_factory import StringFactory
 
 
-class CrossoverOperatorTestCase(TestCase):
+class StringFactoryTestCase(TestCase):
     def test_create_population(self):
         random = Random()
         random.choice = MagicMock(side_effect=['a','a','c','d'])

@@ -87,6 +87,7 @@ class Fitness:
     def __abs__(self):
         return abs(self.value)
 
+
 class Event:
     EVALUATED_POPULATION = 1
     TERMINATE = 2

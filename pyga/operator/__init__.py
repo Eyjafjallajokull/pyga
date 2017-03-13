@@ -3,3 +3,4 @@ from .evolutionary_operator import EvolutionaryOperator
 from .pipeline_operator import PipelineOperator
 from .string_crossover_operator import StringCrossoverOperator
 from .string_mutation_operator import StringMutationOperator
+from .bit_string_mutation_operator import BitStringMutationOperator
