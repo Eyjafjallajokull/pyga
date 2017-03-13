@@ -2,6 +2,9 @@ import uuid
 
 
 class Candidate:
+    """
+    Represents single candidate for problem resolution
+    """
     def __init__(self):
         self.data = {}
         self.fitness = None

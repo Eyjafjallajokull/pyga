@@ -30,7 +30,7 @@ class Random:
 
 
 class Probability:
-    def __init__(self, value, random_generator=Random):
+    def __init__(self, value, random_generator=Random()):
         if value > 1:
             raise ValidationException('Probability value must be between 0, 1')
         self.value = value
@@ -41,6 +41,15 @@ class Probability:
 
 
 class Fitness:
+    """
+    Represents fitness value and how it should be interpreted.
+
+    This type has implemented some magic methods, following expressions are True::
+
+        Fitness(2) + 1 == Fitness(3)
+        float(Fitness(0.5)) == 0.5
+        Fitness(2) > 1
+    """
     def __init__(self, value, is_natural=True):
         self.value = value
         self.is_natural = is_natural
