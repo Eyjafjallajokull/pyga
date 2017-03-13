@@ -4,7 +4,7 @@ from unittest.mock import MagicMock, call
 
 from pyga.common import Probability
 from pyga.candidate import Candidate
-from pyga.operator.crossover_operator import CrossoverOperator
+from pyga.operator.crossover import CrossoverOperator
 from pyga.population import Population
 
 

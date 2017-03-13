@@ -2,7 +2,7 @@ from unittest import TestCase
 from unittest.mock import MagicMock
 
 from pyga.common import Random
-from pyga.factory.candidate_factory import CandidateFactory
+from pyga.factory.candidate import CandidateFactory
 
 
 class CandidateFactoryTestCase(TestCase):

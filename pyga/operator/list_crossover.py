@@ -1,4 +1,4 @@
-from pyga.operator.crossover_operator import CrossoverOperator
+from pyga.operator.crossover import CrossoverOperator
 
 
 class ListCrossoverOperator(CrossoverOperator):

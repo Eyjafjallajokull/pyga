@@ -7,6 +7,9 @@ from ..selection_strategy import SelectionStrategy
 
 
 class EvolutionEngine:
+    """
+    Abstract class for main controller of evolution process.
+    """
     def __init__(self):
         self.observers = []
         self.candidate_factory = None
@@ -16,6 +19,15 @@ class EvolutionEngine:
         self.generation = 0
 
     def create(self, candidate_factory, evolutionary_operator, fitness_evaluator, selection_strategy):
+        """
+        :param candidate_factory: CandidateFactory
+        :param evolutionary_operator: EvolutionaryOperator
+        :param fitness_evaluator: FitnessEvaluator
+        :param selection_strategy: SelectionStrategy
+        :raises TypeError: When any of parameters is of invalid type.
+
+        Initialize all components of an engine.
+        """
         if not isinstance(candidate_factory, CandidateFactory):
             raise TypeError('candidate_factory must be type of CandidateFactory.')
         self.candidate_factory = candidate_factory
@@ -33,6 +45,15 @@ class EvolutionEngine:
         self.selection_strategy = selection_strategy
 
     def evolve(self, population_size, elite_count, termination_condition):
+        """
+        :param population_size: int
+        :param elite_count: int Number of candidates to be preserved without applying evolutionary operator.
+        :param termination_condition: TerminationCondition
+        :return: Population
+
+        Heart of PyGA. Initializes population of candidates using CandidateFactory and processes it using
+        FitnessEvaluator and EvolutionaryOperator. Function continues until TerminationCondition returns True.
+        """
         self.generation = 0
         population = self.candidate_factory.create_population(population_size)
         self.evaluate_population(population)
@@ -47,20 +68,44 @@ class EvolutionEngine:
         return population
 
     def evaluate_population(self, population):
+        """
+        :param population: Population
+        :return: Population
+
+        Calculate fitness using FitnessEvaluator for all candidates in population.
+        """
         for candidate in population:
             candidate.fitness = self.fitness_evaluator.get_fitness(candidate, population)
         population.sort_by_fitness()
         self.trigger_event(Event.EVALUATED_POPULATION, {'population': population, 'generation': self.generation})
 
     def next_evolution_step(self, population, elite_count):
+        """
+        :param population: Population
+        :param elite_count: int Number of candidates to be preserved without applying evolutionary operator.
+        :return: Population
+
+        Abstract method, here all operations of selection, mutation, and crossover should be performed.
+        """
         raise NotImplementedError()
 
     def add_observer(self, observer):
+        """
+        :param observer: Observer
+
+        Add observer for custom reporting of evolution progress.
+        """
         if not isinstance(observer, Observer):
             raise TypeError('observer must be type of Observer')
         self.observers.append(observer)
 
     def trigger_event(self, event_type, event_data):
+        """
+        :param event_type: See constants in Event class.
+        :param event_data: dict
+
+        Trigger event on observer objects.
+        """
         event = Event(event_type, event_data)
         for observer in self.observers:
             observer.trigger(event)

@@ -15,3 +15,10 @@ Basic types
 .. autoclass:: pyga.common.Fitness
    :members:
 
+Core Components
+---------------
+
+.. automodule:: pyga.evolution_engine.evolution_engine
+   :members:
+.. automodule:: pyga.evolution_engine.generational
+   :members:

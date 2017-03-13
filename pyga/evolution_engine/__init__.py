@@ -1,2 +1,2 @@
 from .evolution_engine import EvolutionEngine
-from .generational_evolution_engine import GenerationalEvolutionEngine
+from .generational import GenerationalEvolutionEngine

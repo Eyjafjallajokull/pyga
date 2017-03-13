@@ -3,7 +3,13 @@ import uuid
 
 class Candidate:
     """
-    Represents single candidate for problem resolution
+    Represents single candidate for problem resolution.
+
+    Properties:
+        fitness: Fitness
+
+        data: candidate representation of resolution
+
     """
     def __init__(self):
         self.data = {}

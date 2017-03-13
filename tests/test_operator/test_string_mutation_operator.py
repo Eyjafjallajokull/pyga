@@ -3,9 +3,9 @@ from unittest.mock import MagicMock, call
 
 from pyga.common import Probability, Random
 from pyga.candidate import Candidate
-from pyga.operator.crossover_operator import CrossoverOperator
-from pyga.operator.string_crossover_operator import StringCrossoverOperator
-from pyga.operator.string_mutation_operator import StringMutationOperator
+from pyga.operator.crossover import CrossoverOperator
+from pyga.operator.string_crossover import StringCrossoverOperator
+from pyga.operator.string_mutation import StringMutationOperator
 from pyga.population import Population
 
 

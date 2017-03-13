@@ -2,7 +2,7 @@ from unittest import TestCase
 from unittest.mock import MagicMock
 
 from pyga.common import Random
-from pyga.factory.string_factory import StringFactory
+from pyga.factory.string import StringFactory
 
 
 class StringFactoryTestCase(TestCase):

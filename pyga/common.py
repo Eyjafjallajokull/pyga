@@ -42,6 +42,9 @@ class Probability:
 
 class Fitness:
     """
+    :param value: int or float
+    :param is_natural: boolean
+
     Represents fitness value and how it should be interpreted.
 
     This type has implemented some magic methods, following expressions are True::
@@ -49,6 +52,11 @@ class Fitness:
         Fitness(2) + 1 == Fitness(3)
         float(Fitness(0.5)) == 0.5
         Fitness(2) > 1
+
+    In case fitness evaluator produces negative values, it should set is_natural property to False::
+
+        Fitness(-1, is_natural=False)
+
     """
     def __init__(self, value, is_natural=True):
         self.value = value

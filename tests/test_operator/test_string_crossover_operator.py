@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 from pyga.common import Probability, Random
 from pyga.candidate import Candidate
-from pyga.operator.string_crossover_operator import StringCrossoverOperator
+from pyga.operator.string_crossover import StringCrossoverOperator
 
 
 class StringCrossoverOperatorTestCase(TestCase):

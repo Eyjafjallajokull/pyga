@@ -1,4 +1,4 @@
-from .list_crossover_operator import ListCrossoverOperator
+from .list_crossover import ListCrossoverOperator
 
 
 class StringCrossoverOperator(ListCrossoverOperator):

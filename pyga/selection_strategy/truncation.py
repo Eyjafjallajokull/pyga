@@ -1,6 +1,5 @@
 from copy import deepcopy
 
-from pyga.exception import ValidationException
 from .selection_strategy import SelectionStrategy
 from ..population import Population
 

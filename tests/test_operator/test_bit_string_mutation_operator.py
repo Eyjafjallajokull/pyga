@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 from pyga.common import Probability, Random
 from pyga.candidate import Candidate
-from pyga.operator.bit_string_mutation_operator import BitStringMutationOperator
+from pyga.operator.bit_string_mutation import BitStringMutationOperator
 from pyga.population import Population
 
 

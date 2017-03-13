@@ -9,14 +9,17 @@ class Population(list):
         return self
 
     def append_list(self, candidate_list):
-        """ Append list of candidates to current population. """
+        """
+        :param candidate_list: list of Candidate objects
+
+        Append list of candidates to current population.
+        """
         for candidate in candidate_list:
             self.append(candidate)
 
     def sort_by_fitness(self):
         """
-        Sort population. Candidates are sorted in order from worst fitness to the best.
-        Doesn't matter if fitness is natural or not.
+        Sort candidates in order from worst fitness to the best. Doesn't matter if fitness is natural or not.
         """
         if not len(self):
             return
@@ -24,7 +27,11 @@ class Population(list):
         self.sort(key=lambda x: x.fitness, reverse=not is_natural)
 
     def get_best(self):
-        """ Returns candidate with the best fitness. """
+        """
+        :return: Candidate
+
+        Returns candidate with the best fitness.
+        """
         if not len(self):
             return None
         best = self[0]

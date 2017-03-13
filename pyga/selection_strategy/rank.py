@@ -1,5 +1,4 @@
-from pyga.exception import ValidationException
-from .roulette_wheel_selection_strategy import RouletteWheelSelectionStrategy
+from .roulette_wheel import RouletteWheelSelectionStrategy
 
 
 class RankSelectionStrategy(RouletteWheelSelectionStrategy):
