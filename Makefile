@@ -59,7 +59,7 @@ coverage-ci: ## check code coverage quickly with the default Python
 	coverage html
 
 examples:
-	find examples -type f | grep -v __ | xargs python
+	find examples -type f | grep -v __ | xargs -n 1 python
 
 release: clean ## package and upload a release
 	python setup.py sdist upload
