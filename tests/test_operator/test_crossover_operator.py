@@ -23,7 +23,9 @@ class CrossoverOperatorTestCase(TestCase):
         population.shuffle = MagicMock()
         population.append_list(candidates)
         crossover_points = 1
-        crossover_operator = CrossoverOperator(crossover_points, Probability(1), Random())
+        random = Random()
+        random.shuffle = MagicMock(side_effect=lambda x: x)
+        crossover_operator = CrossoverOperator(crossover_points, Probability(1), random)
         crossover_operator.mate = MagicMock(return_value=(True, True))
         result = crossover_operator.apply(population)
 

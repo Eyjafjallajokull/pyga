@@ -1,13 +1,7 @@
-from pyga.common import Random
-
-
 class Population(list):
     def __add__(self, other):
         self.append_list(other)
         return self
-
-    def shuffle(self):
-        Random.shuffle(self)
 
     def append_list(self, candidate_list):
         for candidate in candidate_list:

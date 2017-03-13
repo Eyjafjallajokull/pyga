@@ -10,7 +10,7 @@ class CrossoverOperator(EvolutionaryOperator):
         self.random = random
 
     def apply(self, selected_candidates):
-        selected_candidates.shuffle()
+        self.random.shuffle(selected_candidates)
         result = Population()
         candidates_count = len(selected_candidates)
         for i in range(0, candidates_count-1, 2):
