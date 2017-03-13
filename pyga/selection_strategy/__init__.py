@@ -3,3 +3,4 @@ from .selection_strategy import SelectionStrategy
 from .roulette_wheel_selection_strategy import RouletteWheelSelectionStrategy
 from .sus_selection_strategy import StochasticUniversalSamplingSelectionStrategy
 from .rank_selection_strategy import RankSelectionStrategy
+from .tournament_selection_strategy import TournamentSelectionStrategy
