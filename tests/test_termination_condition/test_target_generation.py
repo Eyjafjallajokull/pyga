@@ -9,9 +9,9 @@ class TargetGenerationTestCase(TestCase):
         population = Population()
         engine = EvolutionEngine()
         engine.generation = 99
-        target_generation = TargetGeneration(100, engine)
-        self.assertEqual(target_generation.should_terminate(population), False)
+        termination_condition = TargetGeneration(100, engine)
+        self.assertEqual(termination_condition.should_terminate(population), False)
         engine.generation = 100
-        self.assertEqual(target_generation.should_terminate(population), True)
+        self.assertEqual(termination_condition.should_terminate(population), True)
         engine.generation = 101
-        self.assertEqual(target_generation.should_terminate(population), True)
+        self.assertEqual(termination_condition.should_terminate(population), True)

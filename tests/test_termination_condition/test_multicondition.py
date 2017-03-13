@@ -16,13 +16,13 @@ class MulticonditionTestCase(TestCase):
         tc1.should_terminate = MagicMock(return_value=True)
         tc2 = TerminationCondition()
         tc2.should_terminate = MagicMock(return_value=False)
-        multicondition = Multicondition(logic=Multicondition.LOGIC_AND)
-        multicondition.add(tc1)
-        multicondition.add(tc2)
-        self.assertFalse(multicondition.should_terminate(population))
+        termination_condition = Multicondition(logic=Multicondition.LOGIC_AND)
+        termination_condition.add(tc1)
+        termination_condition.add(tc2)
+        self.assertFalse(termination_condition.should_terminate(population))
 
         tc2.should_terminate = MagicMock(return_value=True)
-        self.assertTrue(multicondition.should_terminate(population))
+        self.assertTrue(termination_condition.should_terminate(population))
 
     def test_logical_or(self):
         population = Population()
@@ -32,11 +32,11 @@ class MulticonditionTestCase(TestCase):
         tc1.should_terminate = MagicMock(return_value=True)
         tc2 = TerminationCondition()
         tc2.should_terminate = MagicMock(return_value=False)
-        multicondition = Multicondition(logic=Multicondition.LOGIC_OR)
-        multicondition.add(tc1)
-        multicondition.add(tc2)
-        self.assertTrue(multicondition.should_terminate(population))
+        termination_condition = Multicondition(logic=Multicondition.LOGIC_OR)
+        termination_condition.add(tc1)
+        termination_condition.add(tc2)
+        self.assertTrue(termination_condition.should_terminate(population))
 
         tc1.should_terminate = MagicMock(return_value=False)
-        self.assertFalse(multicondition.should_terminate(population))
+        self.assertFalse(termination_condition.should_terminate(population))
 
