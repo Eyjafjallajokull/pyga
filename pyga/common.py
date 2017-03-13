@@ -54,11 +54,17 @@ class Fitness:
     def __float__(self):
         return float(self.value)
 
+    def __bool__(self):
+        return self.value is not None
+
     def __add__(self, other):
         return self.value + float(other)
 
     def __sub__(self, other):
         return self.value - float(other)
+
+    def __mul__(self, other):
+        return self.value * float(other)
 
     def __lt__(self, other):
         return self.value < float(other)
