@@ -57,11 +57,3 @@ class RankSelectionStrategyTestCase(TestCase):
         results = self.obj.select(population, selection_size)
         self.assertEqual(results[0].fitness, -2)
         self.assertEqual(results[1].fitness, -1)
-
-    def test_validation_selection_size(self):
-        with self.assertRaises(ValidationException):
-            self.obj.select(Population(), 0)
-
-    def test_validation_population_size(self):
-        with self.assertRaises(ValidationException):
-            self.obj.select(Population(), 5)

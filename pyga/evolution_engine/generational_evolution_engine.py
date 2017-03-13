@@ -7,6 +7,7 @@ class GenerationalEvolutionEngine(EvolutionEngine):
         if len(population) < elite_count:
             raise RuntimeError('population size is lower then elite_count')
         elite_population = Population(population[-elite_count:])
+        self.selection_strategy.validate(population, len(population)-elite_count)
         next_population = self.selection_strategy.select(population,
                                                          len(population)-elite_count)
         self.evolutionary_operator.apply(next_population)

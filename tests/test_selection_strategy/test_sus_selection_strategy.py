@@ -59,11 +59,3 @@ class StochasticUniversalSamplingSelectionStrategyTestCase(TestCase):
         self.assertEqual(results[0].fitness, -4)
         self.assertEqual(results[1].fitness, -3)
         self.assertEqual(results[2].fitness, -1)
-
-    def test_validation_selection_size(self):
-        with self.assertRaises(ValidationException):
-            self.obj.select(Population(), 0)
-
-    def test_validation_population_size(self):
-        with self.assertRaises(ValidationException):
-            self.obj.select(Population(), 5)

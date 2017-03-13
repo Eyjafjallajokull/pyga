@@ -20,6 +20,7 @@ class GenerationalEvolutionEngineTestCase(TestCase):
         fitness_evaluator = FitnessEvaluator()
         fitness_evaluator.get_fitness = MagicMock(return_value=5)
         selection_strategy = SelectionStrategy()
+        selection_strategy.validate = MagicMock()
         selection_strategy.select = MagicMock(side_effect=lambda p, s: p[0:s])
         self.engine = GenerationalEvolutionEngine()
         self.engine.create(factory, evolutionary_operator, fitness_evaluator, selection_strategy)
@@ -30,6 +31,7 @@ class GenerationalEvolutionEngineTestCase(TestCase):
             population.append(Candidate())
         result = self.engine.next_evolution_step(population, 3)
         self.assertEqual(len(result), len(population))
+        self.assertEqual(self.engine.selection_strategy.validate.call_count, 1)
         self.assertEqual(self.engine.selection_strategy.select.call_count, 1)
         self.assertEqual(self.engine.evolutionary_operator.apply.call_count, 1)
 

@@ -17,10 +17,6 @@ class RouletteWheelSelectionStrategy(SelectionStrategy):
         self._fitness_sum = None
 
     def select(self, population, selection_size):
-        if selection_size < 1:
-            raise ValidationException('selection_size must not be lower then 1')
-        if len(population) < selection_size:
-            raise ValidationException('selection_size is greater then Population size')
         self._is_natural = population[0].fitness.is_natural
         self._fitness_sum = None
 
