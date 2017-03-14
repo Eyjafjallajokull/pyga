@@ -1,6 +1,7 @@
 from unittest import TestCase
 from unittest.mock import MagicMock, call
 
+from pyga import ValidationException
 from pyga.common import Probability, Random
 from pyga.candidate import Candidate
 from pyga.operator.list_crossover import ListCrossoverOperator
@@ -30,3 +31,15 @@ class ListCrossoverOperatorTestCase(TestCase):
         random.int = MagicMock(side_effect=[1, 3])
         self._test_apply([[[1, 2, 3, 4], [5, 6, 7, 8]],
                           [[1, 6, 7, 4], [5, 2, 3, 8]]], random, 2)
+
+    def test_validate(self):
+        crossover_operator = ListCrossoverOperator(1, Probability(1), Random())
+        candidate1 = Candidate()
+        candidate1.data = [1, 2, 3, 4]
+        candidate2 = Candidate()
+        candidate2.data = [5, 6, 7, 8]
+        crossover_operator.validate_parents(candidate1, candidate2)
+
+        candidate2.data = [1, 2, 3, 4, 5]
+        with self.assertRaises(ValidationException):
+            crossover_operator.validate_parents(candidate1, candidate2)

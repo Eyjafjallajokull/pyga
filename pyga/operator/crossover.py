@@ -15,7 +15,9 @@ class CrossoverOperator(EvolutionaryOperator):
         candidates_count = len(selected_candidates)
         for i in range(0, candidates_count-1, 2):
             if self.probability.get_boolean():
-                crossover = self.mate(selected_candidates[i], selected_candidates[i+1])
+                parent1, parent2 = selected_candidates[i], selected_candidates[i+1]
+                self.validate_parents(parent1, parent2)
+                crossover = self.mate(parent1, parent2)
                 result.append_list(crossover)
             else:
                 result.append(selected_candidates[i])
@@ -26,3 +28,13 @@ class CrossoverOperator(EvolutionaryOperator):
 
     def mate(self, parent1, parent2):
         raise NotImplementedError()
+
+    def validate_parents(self, parent1, parent2):
+        """
+        Validate parents before mating.
+
+        :param parent1: Candidate
+        :param parent2: Candidate
+        :raises ValidationException:
+        """
+        pass

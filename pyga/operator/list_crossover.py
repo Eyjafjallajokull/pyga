@@ -1,3 +1,4 @@
+from ..exception import ValidationException
 from .crossover import CrossoverOperator
 
 
@@ -20,3 +21,14 @@ class ListCrossoverOperator(CrossoverOperator):
                 list1[j] = list2[j]
                 list2[j] = tmp
         return list1, list2
+
+    def validate_parents(self, parent1, parent2):
+        """
+        Validate parents before mating.
+
+        :param parent1: Candidate
+        :param parent2: Candidate
+        :raises ValidationException:
+        """
+        if len(parent1.data) != len(parent2.data):
+            raise ValidationException('candidate data has different lengths')
