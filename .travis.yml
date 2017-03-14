@@ -7,6 +7,6 @@ install:
 script:
   - make coverage-ci
   - make examples
-  - cd docs; make build
+  - ( cd docs; make build )
 after_success:
   - codecov
