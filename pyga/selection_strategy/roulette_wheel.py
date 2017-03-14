@@ -5,10 +5,12 @@ from ..population import Population
 
 
 class RouletteWheelSelectionStrategy(SelectionStrategy):
-    '''
-    Fitness proportionate selection
+    """
+    Implementation of fitness proportionate selection
+
     https://en.wikipedia.org/wiki/Fitness_proportionate_selection
-    '''
+    :param random: Random
+    """
     def __init__(self, random):
         super().__init__()
         self.random = random
@@ -16,6 +18,13 @@ class RouletteWheelSelectionStrategy(SelectionStrategy):
         self._fitness_sum = None
 
     def select(self, population, selection_size):
+        """
+        Select candidates using roulette selection.
+
+        :param population: Population
+        :param selection_size: int
+        :return: Population
+        """
         self._is_natural = population[0].fitness.is_natural
         self._fitness_sum = None
 
@@ -24,6 +33,13 @@ class RouletteWheelSelectionStrategy(SelectionStrategy):
         return selected
 
     def roulette(self, population, points):
+        """
+        Perform roulette selection.
+
+        :param population: Population
+        :param points: list
+        :return: Population
+        """
         selected = Population()
         segments = self.get_segments(population)
         for rand in points:
@@ -40,6 +56,12 @@ class RouletteWheelSelectionStrategy(SelectionStrategy):
         return segments
 
     def get_normal_fitness(self, candidate):
+        """
+        Return normalized fitness
+
+        :param candidate: Candidate
+        :return: float or int
+        """
         if self._is_natural:
             return candidate.fitness
         else:

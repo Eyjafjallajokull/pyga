@@ -8,6 +8,10 @@ from pyga.termination_condition import TerminationCondition
 
 
 class MulticonditionTestCase(TestCase):
+    def test_add(self):
+        with self.assertRaises(TypeError):
+            Multicondition().add(None)
+
     def test_logical_and(self):
         population = Population()
         population.append(Candidate())
