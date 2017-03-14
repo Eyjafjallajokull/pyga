@@ -1,5 +1,3 @@
-from time import time
-
 from .termination_condition import TerminationCondition
 
 

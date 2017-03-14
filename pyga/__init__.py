@@ -1,5 +1,5 @@
 from .evolution_engine import *
-from .factory import *
+from .candidate_factory import *
 from .fitness_evaluator import *
 from .operator import *
 from .selection_strategy import *

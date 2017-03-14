@@ -1,4 +1,4 @@
-from pyga.population import Population
+from ..population import Population
 from .evolutionary_operator import EvolutionaryOperator
 
 

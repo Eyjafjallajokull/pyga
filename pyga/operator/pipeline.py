@@ -1,4 +1,4 @@
-from pyga.exception import ValidationException
+from ..exception import ValidationException
 from .evolutionary_operator import EvolutionaryOperator
 
 

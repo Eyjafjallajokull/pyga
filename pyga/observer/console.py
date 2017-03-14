@@ -1,10 +1,18 @@
+import logging
 from ..common import Event
 from .observer import Observer
-import logging
 
 
 class ConsoleObserver(Observer):
+    """
+    Basic EvolutionEngine observer which uses logging module to print debug information.
+    """
     def trigger(self, event):
+        """
+        Print debug information.
+
+        :param event: Event
+        """
         if event.type == Event.INITIALIZE:
             logging.debug('initialized population')
         elif event.type == Event.EVALUATED_POPULATION:

@@ -10,9 +10,9 @@ class Population(list):
 
     def append_list(self, candidate_list):
         """
-        :param candidate_list: list of Candidate objects
-
         Append list of candidates to current population.
+
+        :param candidate_list: list of Candidate objects
         """
         for candidate in candidate_list:
             self.append(candidate)
@@ -28,9 +28,9 @@ class Population(list):
 
     def get_best(self):
         """
-        :return: Candidate
-
         Returns candidate with the best fitness.
+
+        :return: Candidate
         """
         if not len(self):
             return None

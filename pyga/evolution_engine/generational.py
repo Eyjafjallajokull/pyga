@@ -1,4 +1,4 @@
-from pyga.population import Population
+from ..population import Population
 from .evolution_engine import EvolutionEngine
 
 
@@ -8,11 +8,11 @@ class GenerationalEvolutionEngine(EvolutionEngine):
     """
     def next_evolution_step(self, population, elite_count):
         """
+        From given population selects candidates and executes EvolutionaryOperator on them.
+
         :param population: Population
         :param elite_count: int Number of candidates to be preserved without applying evolutionary operator.
         :return: Population
-
-        From given population selects candidates and executes EvolutionaryOperator on them.
         """
         if len(population) < elite_count:
             raise RuntimeError('population size is lower then elite_count')

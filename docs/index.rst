@@ -9,8 +9,5 @@ PyGA documentation!
 .. toctree::
    :maxdepth: 2
 
-   reference
+   reference/pyga
    indices
-
-
-

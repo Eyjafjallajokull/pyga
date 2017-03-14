@@ -18,3 +18,11 @@ help:
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
+build:
+	sphinx-apidoc --force -o reference ../pyga
+	rm reference/modules.rst
+	make html
+
+build-watch:
+	wr -p 1 "make build" ../pyga

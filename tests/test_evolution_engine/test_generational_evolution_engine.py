@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 from pyga import GenerationalEvolutionEngine, EvolutionEngine
 from pyga.common import Random
-from pyga.factory import CandidateFactory
+from pyga.candidate_factory import CandidateFactory
 from pyga.fitness_evaluator import FitnessEvaluator
 from pyga.candidate import Candidate
 from pyga.operator import EvolutionaryOperator
