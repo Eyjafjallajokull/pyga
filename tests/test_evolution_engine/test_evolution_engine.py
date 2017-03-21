@@ -1,16 +1,16 @@
 from unittest import TestCase
 from unittest.mock import MagicMock
 
+from pyga import Candidate
+from pyga import CandidateFactory
+from pyga import EvolutionEngine
+from pyga import Operator
+from pyga import FitnessEvaluator
 from pyga import Observer, Event, Fitness
-from pyga.common import Random
-from pyga.evolution_engine import EvolutionEngine
-from pyga.candidate_factory import CandidateFactory
-from pyga.fitness_evaluator import FitnessEvaluator
-from pyga.candidate import Candidate
-from pyga.operator import EvolutionaryOperator
-from pyga.population import Population
-from pyga.selection_strategy import SelectionStrategy
-from pyga.termination_condition.termination_condition import TerminationCondition
+from pyga import Population
+from pyga import Random
+from pyga import SelectionStrategy
+from pyga import TerminationCondition
 
 
 class EvolutionEngineTestCase(TestCase):
@@ -18,7 +18,7 @@ class EvolutionEngineTestCase(TestCase):
         random = Random()
         factory = CandidateFactory(random)
         factory.create_candidate = MagicMock(side_effect=lambda: Candidate())
-        operator = EvolutionaryOperator()
+        operator = Operator()
         fitness_evaluator = FitnessEvaluator()
         fitness_evaluator.get_fitness = MagicMock(side_effect=lambda c, p: Fitness(5))
         selection_strategy = SelectionStrategy()
@@ -41,9 +41,9 @@ class EvolutionEngineTestCase(TestCase):
         factory = CandidateFactory(random)
         with self.assertRaises(TypeError) as cm:
             self.engine.create(factory, None, None, None)
-        self.assertIn('EvolutionaryOperator', str(cm.exception))
+        self.assertIn('Operator', str(cm.exception))
 
-        operator = EvolutionaryOperator()
+        operator = Operator()
         with self.assertRaises(TypeError) as cm:
             self.engine.create(factory, operator, None, None)
         self.assertIn('FitnessEvaluator', str(cm.exception))

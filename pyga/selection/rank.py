@@ -1,7 +1,7 @@
-from .roulette_wheel import RouletteWheelSelectionStrategy
+from .roulette_wheel import RouletteWheelSelection
 
 
-class RankSelectionStrategy(RouletteWheelSelectionStrategy):
+class RankSelection(RouletteWheelSelection):
     def select(self, population, selection_size):
         self._is_natural = population[0].fitness.is_natural
         self._fitness_sum = None

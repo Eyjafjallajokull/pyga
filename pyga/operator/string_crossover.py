@@ -1,12 +1,20 @@
 from ..exception import ValidationException
-from .list_crossover import ListCrossoverOperator
+from .list_crossover import ListCrossover
 
 
-class StringCrossoverOperator(ListCrossoverOperator):
-    def __init__(self, crossover_points, probability, random):
-        super().__init__(crossover_points, probability, random)
-
+class StringCrossover(ListCrossover):
+    """
+    Simple crossover implementation.
+    """
     def mate(self, parent1, parent2):
+        """
+        Perform list crossover on two parents.
+        Converts string to list of chars, and calls parent method mate_lists.
+
+        :param parent1:
+        :param parent2:
+        :return:
+        """
         list1, list2 = self.mate_lists(list(parent1.data), list(parent2.data))
         parent1.data = "".join(list1)
         parent2.data = "".join(list2)

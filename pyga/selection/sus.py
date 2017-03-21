@@ -1,7 +1,7 @@
-from .roulette_wheel import RouletteWheelSelectionStrategy
+from .roulette_wheel import RouletteWheelSelection
 
 
-class StochasticUniversalSamplingSelectionStrategy(RouletteWheelSelectionStrategy):
+class StochasticUniversalSamplingSelection(RouletteWheelSelection):
     """
     Implementation of Stochastic universal sampling
     https://en.wikipedia.org/wiki/Stochastic_universal_sampling

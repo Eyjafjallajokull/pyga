@@ -1,4 +1,4 @@
-class EvolutionaryOperator:
+class Operator:
     """
     Abstract class for all implementations of operators.
     """

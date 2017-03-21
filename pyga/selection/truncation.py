@@ -4,7 +4,7 @@ from .selection_strategy import SelectionStrategy
 from ..population import Population
 
 
-class TruncationSelectionStrategy(SelectionStrategy):
+class TruncationSelection(SelectionStrategy):
     """
     Implementation of truncation selection.
     """

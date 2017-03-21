@@ -1,16 +1,11 @@
-from .evolutionary_operator import EvolutionaryOperator
+from .mutation import Mutation
 
 
-class BitStringMutationOperator(EvolutionaryOperator):
+class BitStringMutation(Mutation):
     def __init__(self, probability, random):
         super().__init__()
         self.probability = probability
         self.random = random
-
-    def apply(self, selected_candidates):
-        for candidate in selected_candidates:
-            candidate.data = self.mutate(candidate.data)
-        return selected_candidates
 
     def mutate(self, string):
         mutated = list(string)

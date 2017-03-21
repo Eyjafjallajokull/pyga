@@ -8,7 +8,8 @@ from pyga import *
 population_size = 10
 elite_count = 2
 crossover_points = 2
-crossover_mutate_probability = 0.2
+crossover_probability = 0.2
+mutate_probability = 0.5
 max_weight = 15
 items = [
     # name, survival score, weight
@@ -59,15 +60,16 @@ def print_results(result):
 
 logging.basicConfig(level=logging.DEBUG)
 random = Random()
-probability = Probability(crossover_mutate_probability, random)
+crossover_probability = Probability(crossover_probability, random)
+mutate_probability = Probability(mutate_probability, random)
 candidate_factory = BitStringFactory(random, len(items))
-crossover = StringCrossoverOperator(crossover_points, probability, random)
-mutation = BitStringMutationOperator(probability, random)
+crossover = StringCrossover(crossover_probability, random, crossover_points)
+mutation = BitStringMutation(mutate_probability, random)
 operator = PipelineOperator()
 operator.append_operator(crossover)
 operator.append_operator(mutation)
 fitness_evaluator = BackpackFitnessEvaluator(items, max_weight)
-selection_strategy = RouletteWheelSelectionStrategy(random)
+selection_strategy = RouletteWheelSelection(random)
 termination_condition = Stagnation(100)
 
 engine = GenerationalEvolutionEngine()

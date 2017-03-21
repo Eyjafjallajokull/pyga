@@ -1,15 +1,14 @@
 from unittest import TestCase
 
+from pyga import Candidate
 from pyga import Fitness
-from pyga.exception import ValidationException
-from pyga.candidate import Candidate
-from pyga.population import Population
-from pyga.selection_strategy import *
+from pyga import Population
+from pyga import TruncationSelection
 
 
 class TruncationSelectionStrategyTestCase(TestCase):
     def setUp(self):
-        self.obj = TruncationSelectionStrategy()
+        self.obj = TruncationSelection()
 
     def create_candidate(self, fitness=None, is_natural=True):
         candidate = Candidate()

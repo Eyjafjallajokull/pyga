@@ -1,17 +1,17 @@
 from unittest import TestCase
 from unittest.mock import MagicMock
 
-from pyga import Random, Fitness
-from pyga.exception import ValidationException
-from pyga.candidate import Candidate
-from pyga.population import Population
-from pyga.selection_strategy import *
+from pyga import Candidate
+from pyga import Fitness
+from pyga import Population
+from pyga import Random
+from pyga import StochasticUniversalSamplingSelection
 
 
 class StochasticUniversalSamplingSelectionStrategyTestCase(TestCase):
     def setUp(self):
         self.random = Random()
-        self.obj = StochasticUniversalSamplingSelectionStrategy(self.random)
+        self.obj = StochasticUniversalSamplingSelection(self.random)
 
     def create_candidate(self, fitness=None, is_natural=True):
         candidate = Candidate()

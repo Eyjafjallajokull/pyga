@@ -1,15 +1,15 @@
 from ..exception import ValidationException
-from .evolutionary_operator import EvolutionaryOperator
+from .operator import Operator
 
 
-class PipelineOperator(EvolutionaryOperator):
+class PipelineOperator(Operator):
     def __init__(self):
         super().__init__()
         self.operators = []
 
     def append_operator(self, operator):
-        if not isinstance(operator, EvolutionaryOperator):
-            raise ValidationException('Operator must be type of EvolutionaryOperator.')
+        if not isinstance(operator, Operator):
+            raise ValidationException('Operator must be type of Operator.')
         self.operators.append(operator)
 
     def apply(self, selected_candidates):

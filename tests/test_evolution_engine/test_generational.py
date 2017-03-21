@@ -1,21 +1,21 @@
 from unittest import TestCase
 from unittest.mock import MagicMock
 
-from pyga import GenerationalEvolutionEngine, EvolutionEngine
-from pyga.common import Random
-from pyga.candidate_factory import CandidateFactory
-from pyga.fitness_evaluator import FitnessEvaluator
-from pyga.candidate import Candidate
-from pyga.operator import EvolutionaryOperator
-from pyga.population import Population
-from pyga.selection_strategy import SelectionStrategy
+from pyga import Candidate
+from pyga import CandidateFactory
+from pyga import Operator
+from pyga import FitnessEvaluator
+from pyga import GenerationalEvolutionEngine
+from pyga import Population
+from pyga import Random
+from pyga import SelectionStrategy
 
 
 class GenerationalEvolutionEngineTestCase(TestCase):
     def setUp(self):
         random = Random()
         factory = CandidateFactory(random)
-        evolutionary_operator = EvolutionaryOperator()
+        evolutionary_operator = Operator()
         evolutionary_operator.apply = MagicMock(side_effect=lambda p: p)
         fitness_evaluator = FitnessEvaluator()
         fitness_evaluator.get_fitness = MagicMock(return_value=5)

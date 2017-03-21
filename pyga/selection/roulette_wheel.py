@@ -1,10 +1,11 @@
 from copy import deepcopy
 
+from .truncation import TruncationSelection
 from .selection_strategy import SelectionStrategy
 from ..population import Population
 
 
-class RouletteWheelSelectionStrategy(SelectionStrategy):
+class RouletteWheelSelection(SelectionStrategy):
     """
     Implementation of fitness proportionate selection
 
@@ -30,6 +31,8 @@ class RouletteWheelSelectionStrategy(SelectionStrategy):
 
         pointers = [self.random.float() * self.get_fitness_sum(population) for _ in range(selection_size)]
         selected = self.roulette(population, pointers)
+        if len(selected) == 0:
+            selected = TruncationSelection().select(population, selection_size)
         return selected
 
     def roulette(self, population, points):

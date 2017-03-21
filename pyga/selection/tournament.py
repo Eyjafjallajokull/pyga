@@ -4,7 +4,7 @@ from .selection_strategy import SelectionStrategy
 from ..population import Population
 
 
-class TournamentSelectionStrategy(SelectionStrategy):
+class TournamentSelection(SelectionStrategy):
     """
     Implementation of tournament selection
 

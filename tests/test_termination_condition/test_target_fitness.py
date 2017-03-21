@@ -1,9 +1,9 @@
 from unittest import TestCase
 
+from pyga import Candidate
 from pyga import Fitness
-from pyga.candidate import Candidate
-from pyga.population import Population
-from pyga.termination_condition import TargetFitness
+from pyga import Population
+from pyga import TargetFitness
 
 
 class TargetFitnessTestCase(TestCase):

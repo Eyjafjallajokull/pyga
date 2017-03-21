@@ -1,13 +1,14 @@
 from unittest import TestCase
 from unittest.mock import MagicMock
 
-from pyga.exception import ValidationException
-from pyga.candidate import Candidate
-from pyga.operator import EvolutionaryOperator, PipelineOperator
-from pyga.population import Population
+from pyga import Candidate
+from pyga import Operator
+from pyga import PipelineOperator
+from pyga import Population
+from pyga import ValidationException
 
 
-class SampleOperator(EvolutionaryOperator):
+class SampleOperator(Operator):
     def apply(self, selected_candidates):
         return selected_candidates
 

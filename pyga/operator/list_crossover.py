@@ -1,18 +1,39 @@
 from ..exception import ValidationException
-from .crossover import CrossoverOperator
+from .crossover import Crossover
 
 
-class ListCrossoverOperator(CrossoverOperator):
-    def __init__(self, crossover_points, probability, random):
-        super().__init__(crossover_points, probability, random)
+class ListCrossover(Crossover):
+    """
+    Crossover for candidates which data is represented by lists.
+    List items are not evaluated in any way, so it can any type of data.
+
+    :param probability: Probability of crossover occurring for given 2 selected candidates
+    :param random: Random
+    :param crossover_points: int number of cut points
+    """
+    def __init__(self, probability, random, crossover_points):
+        super().__init__(probability, random)
+        self.crossover_points = crossover_points
 
     def mate(self, parent1, parent2):
-        list1, list2 = self.mate_lists(parent1.data, parent2.data)
-        parent1.data = list1
-        parent2.data = list2
+        """
+        Perform list crossover on two parents.
+
+        :param parent1: Candidate
+        :param parent2: Candidate
+        :return: Candidate, Candidate
+        """
+        parent1.data, parent2.data = self.mate_lists(parent1.data, parent2.data)
         return parent1, parent2
 
     def mate_lists(self, list1, list2):
+        """
+        Crossover two lists, of any type of data.
+
+        :param list1: list
+        :param list2: list
+        :return: list, list
+        """
         indexes = [self.random.int(0, len(list1)-1) for _ in range(self.crossover_points)]
         indexes.sort()
         for i in range(len(indexes)):

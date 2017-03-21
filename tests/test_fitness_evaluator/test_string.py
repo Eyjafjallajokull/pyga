@@ -1,9 +1,9 @@
 from unittest import TestCase
 
-from pyga.common import Fitness
-from pyga.fitness_evaluator import StringFitnessEvaluator
-from pyga.candidate import Candidate
-from pyga.population import Population
+from pyga import Candidate
+from pyga import Fitness
+from pyga import Population
+from pyga import StringFitnessEvaluator
 
 
 class StringFitnessEvaluatorTestCase(TestCase):

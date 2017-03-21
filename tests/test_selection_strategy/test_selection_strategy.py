@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from pyga.exception import ValidationException
-from pyga.population import Population
-from pyga.selection_strategy import *
+from pyga import Population
+from pyga import SelectionStrategy
+from pyga import ValidationException
 
 
 class SelectionStrategyTestCase(TestCase):

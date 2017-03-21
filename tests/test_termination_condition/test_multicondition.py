@@ -1,10 +1,10 @@
 from unittest import TestCase
 from unittest.mock import MagicMock
 
-from pyga.candidate import Candidate
-from pyga.population import Population
-from pyga.termination_condition import Multicondition
-from pyga.termination_condition import TerminationCondition
+from pyga import Candidate
+from pyga import Multicondition
+from pyga import Population
+from pyga import TerminationCondition
 
 
 class MulticonditionTestCase(TestCase):

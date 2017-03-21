@@ -1,12 +1,11 @@
 from unittest import TestCase
-from unittest.mock import MagicMock, call
+from unittest.mock import MagicMock
 
-from pyga.common import Probability, Random
-from pyga.candidate import Candidate
-from pyga.operator.crossover import CrossoverOperator
-from pyga.operator.string_crossover import StringCrossoverOperator
-from pyga.operator.string_mutation import StringMutationOperator
-from pyga.population import Population
+from pyga import Candidate
+from pyga import Population
+from pyga import Probability
+from pyga import Random
+from pyga import StringMutation
 
 
 class StringMutationOperatorTestCase(TestCase):
@@ -20,7 +19,7 @@ class StringMutationOperatorTestCase(TestCase):
         probability = Probability(1)
         random = Random()
         random.choice = MagicMock(side_effect=['a', 'b', 'c', 'd'])
-        crossover_operator = StringMutationOperator(alphabet, probability, random)
+        crossover_operator = StringMutation(probability, random, alphabet)
         result = crossover_operator.apply(population)
         self.assertEqual(len(result), len(population))
         self.assertEqual(result[0].data, outputs)
@@ -34,7 +33,7 @@ class StringMutationOperatorTestCase(TestCase):
         population.append(candidate)
         probability = Probability(0)
         random = Random()
-        crossover_operator = StringMutationOperator(alphabet, probability, random)
+        crossover_operator = StringMutation(probability, random, alphabet)
         result = crossover_operator.apply(population)
         self.assertEqual(len(result), len(population))
         self.assertEqual(result[0].data, outputs)

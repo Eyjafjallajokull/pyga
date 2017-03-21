@@ -1,8 +1,7 @@
 from unittest import TestCase
 from unittest.mock import MagicMock
 
-from pyga import BitStringFactory
-from pyga.common import Random
+from pyga import BitStringFactory, Random
 
 
 class BitStringFactoryTestCase(TestCase):

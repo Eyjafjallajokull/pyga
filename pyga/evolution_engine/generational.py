@@ -8,7 +8,7 @@ class GenerationalEvolutionEngine(EvolutionEngine):
     """
     def next_evolution_step(self, population, elite_count):
         """
-        From given population selects candidates and executes EvolutionaryOperator on them.
+        From given population selects candidates and executes Operator on them.
 
         :param population: Population
         :param elite_count: int Number of candidates to be preserved without applying evolutionary operator.

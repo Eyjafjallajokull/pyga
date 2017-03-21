@@ -1,6 +1,9 @@
 from unittest import TestCase
 
-from pyga import Stagnation, Population, Candidate, Fitness
+from pyga import Candidate
+from pyga import Fitness
+from pyga import Population
+from pyga import Stagnation
 
 
 class StagnationTestCase(TestCase):

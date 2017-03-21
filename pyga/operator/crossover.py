@@ -1,15 +1,29 @@
 from ..population import Population
-from .evolutionary_operator import EvolutionaryOperator
+from .operator import Operator
 
 
-class CrossoverOperator(EvolutionaryOperator):
-    def __init__(self, crossover_points, probability, random):
+class Crossover(Operator):
+    """
+    Abstract class for crossover operators. Uses probability to choose witch candidates will be used as parents to
+    create new offspring.
+
+    :param probability: of crossover occurring for given two selected candidates
+    :type probability: Probability
+    :param random:
+    :type random: Random
+    """
+    def __init__(self, probability, random):
         super().__init__()
-        self.crossover_points = crossover_points
         self.probability = probability
         self.random = random
 
     def apply(self, selected_candidates):
+        """
+        Perform crossover on given candidates.
+
+        :param selected_candidates: Population
+        :return: Population
+        """
         self.random.shuffle(selected_candidates)
         result = Population()
         candidates_count = len(selected_candidates)
@@ -27,6 +41,13 @@ class CrossoverOperator(EvolutionaryOperator):
         return result
 
     def mate(self, parent1, parent2):
+        """
+        Perform crossover on two parents. Should always produce and return two offspring candidates.
+
+        :param parent1: Candidate
+        :param parent2: Candidate
+        :return: Candidate, Candidate
+        """
         raise NotImplementedError()
 
     def validate_parents(self, parent1, parent2):

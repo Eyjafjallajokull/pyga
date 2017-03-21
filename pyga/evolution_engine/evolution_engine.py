@@ -2,8 +2,8 @@ from ..common import Event
 from ..observer import Observer
 from ..candidate_factory import CandidateFactory
 from ..fitness_evaluator import FitnessEvaluator
-from ..operator import EvolutionaryOperator
-from ..selection_strategy import SelectionStrategy
+from ..operator import Operator
+from ..selection import SelectionStrategy
 
 
 class EvolutionEngine:
@@ -23,7 +23,7 @@ class EvolutionEngine:
         Initialize all components of an engine.
 
         :param candidate_factory: CandidateFactory
-        :param evolutionary_operator: EvolutionaryOperator
+        :param evolutionary_operator: Operator
         :param fitness_evaluator: FitnessEvaluator
         :param selection_strategy: SelectionStrategy
         :raises TypeError: When any of parameters is of invalid type.
@@ -32,8 +32,8 @@ class EvolutionEngine:
             raise TypeError('candidate_factory must be type of CandidateFactory.')
         self.candidate_factory = candidate_factory
 
-        if not isinstance(evolutionary_operator, EvolutionaryOperator):
-            raise TypeError('evolutionary_operator must be type of EvolutionaryOperator.')
+        if not isinstance(evolutionary_operator, Operator):
+            raise TypeError('evolutionary_operator must be type of Operator.')
         self.evolutionary_operator = evolutionary_operator
 
         if not isinstance(fitness_evaluator, FitnessEvaluator):
@@ -41,13 +41,13 @@ class EvolutionEngine:
         self.fitness_evaluator = fitness_evaluator
 
         if not isinstance(selection_strategy, SelectionStrategy):
-            raise TypeError('selection_strategy must be type of SelectionStrategy.')
+            raise TypeError('selection must be type of SelectionStrategy.')
         self.selection_strategy = selection_strategy
 
     def evolve(self, population_size, elite_count, termination_condition):
         """
         Heart of PyGA. Initializes population of candidates using CandidateFactory and processes it using
-        FitnessEvaluator and EvolutionaryOperator. Function continues until TerminationCondition returns True.
+        FitnessEvaluator and Operator. Function continues until TerminationCondition returns True.
 
         :param population_size: int
         :param elite_count: int Number of candidates to be preserved without applying evolutionary operator.

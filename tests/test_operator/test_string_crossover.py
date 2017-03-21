@@ -1,10 +1,11 @@
 from unittest import TestCase
 from unittest.mock import MagicMock
 
+from pyga import Candidate
+from pyga import Probability
+from pyga import Random
+from pyga import StringCrossover
 from pyga import ValidationException
-from pyga.common import Probability, Random
-from pyga.candidate import Candidate
-from pyga.operator.string_crossover import StringCrossoverOperator
 
 
 class StringCrossoverOperatorTestCase(TestCase):
@@ -14,7 +15,7 @@ class StringCrossoverOperatorTestCase(TestCase):
         candidate2 = Candidate()
         candidate2.data = strings[0][1]
         crossover_points = points
-        crossover_operator = StringCrossoverOperator(crossover_points, Probability(1), random)
+        crossover_operator = StringCrossover(Probability(1), random, crossover_points)
         result = crossover_operator.mate(candidate1, candidate2)
         self.assertEqual(len(result), 2)
         self.assertEqual(result[0].data, strings[1][0])
@@ -36,7 +37,7 @@ class StringCrossoverOperatorTestCase(TestCase):
         self._test_apply([['AAAAAAAAAA', 'BBBBBBBBBB'], ['AABBAABBAA', 'BBAABBAABB']], random, 4)
 
     def test_validate(self):
-        crossover_operator = StringCrossoverOperator(1, Probability(1), Random())
+        crossover_operator = StringCrossover(Probability(1), Random(), 1)
         candidate1 = Candidate()
         candidate1.data = 'AAAA'
         candidate2 = Candidate()

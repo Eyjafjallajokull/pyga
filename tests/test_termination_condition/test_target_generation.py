@@ -1,7 +1,8 @@
 from unittest import TestCase
 
-from pyga import TargetGeneration, EvolutionEngine
-from pyga.population import Population
+from pyga import EvolutionEngine
+from pyga import Population
+from pyga import TargetGeneration
 
 
 class TargetGenerationTestCase(TestCase):

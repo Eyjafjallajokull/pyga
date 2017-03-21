@@ -1,11 +1,11 @@
-from random import Random
 from unittest import TestCase
 from unittest.mock import MagicMock, call
 
-from pyga.common import Probability
-from pyga.candidate import Candidate
-from pyga.operator.crossover import CrossoverOperator
-from pyga.population import Population
+from pyga import Candidate
+from pyga import Crossover
+from pyga import Population
+from pyga import Probability
+from pyga import Random
 
 
 class CrossoverOperatorTestCase(TestCase):
@@ -22,10 +22,9 @@ class CrossoverOperatorTestCase(TestCase):
         population = Population()
         population.shuffle = MagicMock()
         population.append_list(candidates)
-        crossover_points = 1
         random = Random()
         random.shuffle = MagicMock(side_effect=lambda x: x)
-        crossover_operator = CrossoverOperator(crossover_points, Probability(1), random)
+        crossover_operator = Crossover(Probability(1), random)
         crossover_operator.mate = MagicMock(return_value=(True, True))
         result = crossover_operator.apply(population)
 
@@ -42,8 +41,7 @@ class CrossoverOperatorTestCase(TestCase):
         population = Population()
         population.shuffle = MagicMock()
         population.append_list(candidates)
-        crossover_points = 1
-        crossover_operator = CrossoverOperator(crossover_points, Probability(0), Random())
+        crossover_operator = Crossover(Probability(0), Random())
         crossover_operator.mate = MagicMock(return_value=(True, True))
         result = crossover_operator.apply(population)
         self.assertEqual(len(result), population_size)

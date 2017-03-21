@@ -1,8 +1,8 @@
-from .list_crossover import ListCrossoverOperator
+from .list_crossover import ListCrossover
 from copy import copy
 
 
-class ListOrderCrossoverOperator(ListCrossoverOperator):
+class ListOrderCrossover(ListCrossover):
     """
     Partially Mapped Cross-over (PMX) algorithm
 
@@ -12,7 +12,7 @@ class ListOrderCrossoverOperator(ListCrossoverOperator):
     :param random: Random
     """
     def __init__(self, probability, random):
-        super().__init__(2, probability, random)
+        super().__init__(probability, random, 2)
 
     def mate_lists(self, parent_list1, parent_list2):
         """

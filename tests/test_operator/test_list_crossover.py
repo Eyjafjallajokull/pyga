@@ -1,10 +1,11 @@
 from unittest import TestCase
 from unittest.mock import MagicMock, call
 
+from pyga import Candidate
+from pyga import ListCrossover
+from pyga import Probability
+from pyga import Random
 from pyga import ValidationException
-from pyga.common import Probability, Random
-from pyga.candidate import Candidate
-from pyga.operator.list_crossover import ListCrossoverOperator
 
 
 class ListCrossoverOperatorTestCase(TestCase):
@@ -14,7 +15,7 @@ class ListCrossoverOperatorTestCase(TestCase):
         candidate2 = Candidate()
         candidate2.data = strings[0][1]
         crossover_points = points
-        crossover_operator = ListCrossoverOperator(crossover_points, Probability(1), random)
+        crossover_operator = ListCrossover(Probability(1), random, crossover_points)
         result = crossover_operator.mate(candidate1, candidate2)
         self.assertEqual(len(result), 2)
         self.assertEqual(result[0].data, strings[1][0])
@@ -33,7 +34,7 @@ class ListCrossoverOperatorTestCase(TestCase):
                           [[1, 6, 7, 4], [5, 2, 3, 8]]], random, 2)
 
     def test_validate(self):
-        crossover_operator = ListCrossoverOperator(1, Probability(1), Random())
+        crossover_operator = ListCrossover(Probability(1), Random(), 1)
         candidate1 = Candidate()
         candidate1.data = [1, 2, 3, 4]
         candidate2 = Candidate()

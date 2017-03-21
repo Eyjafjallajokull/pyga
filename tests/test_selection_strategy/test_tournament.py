@@ -1,16 +1,17 @@
 from unittest import TestCase
 from unittest.mock import MagicMock
 
-from pyga import Fitness, Random
-from pyga.candidate import Candidate
-from pyga.population import Population
-from pyga.selection_strategy import *
+from pyga import Candidate
+from pyga import Fitness
+from pyga import Population
+from pyga import Random
+from pyga import TournamentSelection
 
 
 class TruncationSelectionStrategyTestCase(TestCase):
     def setUp(self):
         self.random = Random()
-        self.obj = TournamentSelectionStrategy(2, self.random)
+        self.obj = TournamentSelection(2, self.random)
 
     def create_candidate(self, fitness=None, is_natural=True):
         candidate = Candidate()
