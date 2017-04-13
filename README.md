@@ -13,12 +13,21 @@
 
 ## Project status: preparing first release
 
+PyGa is a flexible, object-oriented framework for developing genetic algorithms in Python.
+
+## Features
+
+* Pluggable architecture -- source code is decoupled into many independent classes which can be used to build custom solutions.
+* Batteries included -- most common selection strategies and evolutionary operators are already implemented.
+
 ## Installation
 
 Until first release, package will not be published to pip repository.
-So the only way to obtain code is to do `git clone` or download zip.
+Currently the only way to obtain code is to do `git clone` or download zip.
 
-## Usage
+## Getting Started
+
+Note: You should be familiar with how genetic algorithms work and what are basic components of the process.
 
 ```
 engine = GenerationalEvolutionEngine()
@@ -45,10 +54,19 @@ DEBUG:root:finished processing
 28056635-7393-43d9-8e3e-a2ebf6dc02bf
 ```
 
+## Documentation
+
 ## Tests
+
+The source code is very well covered by tests. To run all checks, run:
 
 ```console
 make test
+```
+
+To execute tests and generate code coverage report, run:
+
+```console
 make coverage
 ```
 
