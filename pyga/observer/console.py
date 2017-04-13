@@ -1,4 +1,7 @@
 import logging
+
+import numpy
+
 from ..common import Event
 from .observer import Observer
 
@@ -16,8 +19,11 @@ class ConsoleObserver(Observer):
         if event.type == Event.INITIALIZE:
             logging.debug('initialized population')
         elif event.type == Event.EVALUATED_POPULATION:
-            best = event.data['population'].get_best()
+            population = event.data['population']
+            best = population.get_best()
             generation = event.data['generation']
-            logging.debug('generation = %d; best candidate: %s; fitness: %d' % (generation, str(best.data), best.fitness))
+            std = float(numpy.std([float(c.fitness) for c in population]))
+            logging.debug('generation = %d; fitness: %.2f; std: %.2f; best candidate: %s' %
+                          (generation, best.fitness, std, str(best.data)))
         elif event.type == Event.TERMINATE:
             logging.debug('finished processing')
